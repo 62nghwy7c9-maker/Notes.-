@@ -4,11 +4,11 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 
 ## M0 – Fundament (≈ 0,5–1 Tag)
 
-- [ ] Monorepo gemäß [08-projektstruktur.md](08-projektstruktur.md) aufsetzen (workspaces, tsconfig, ESLint, Vitest, `.env.example`, `.gitignore`)
-- [ ] `shared/`: Entitäts- und API-Schemas (Zod) aus [04](04-datenmodell.md)/[05](05-api-spezifikation.md) anlegen
-- [ ] `server/`: Hono-Bootstrap, Drizzle-Schema + Migration 0001 inkl. FTS5-Triggern, Health-Endpunkt `GET /api/health`
-- [ ] `client/`: Vite + Tailwind + Design-Tokens aus [07](07-ui-ux-design.md) (CSS-Variablen, Theme-Umschaltung), leeres 3-Spalten-Layout
-- [ ] CI-Skript lokal: `npm run lint && npm test` grün
+- [x] Monorepo gemäß [08-projektstruktur.md](08-projektstruktur.md) aufsetzen (workspaces, tsconfig, ESLint, Vitest, `.env.example`, `.gitignore`)
+- [x] `shared/`: Entitäts- und API-Schemas (Zod) aus [04](04-datenmodell.md)/[05](05-api-spezifikation.md) anlegen
+- [x] `server/`: Hono-Bootstrap, Drizzle-Schema + Migration 0001 inkl. FTS5-Triggern, Health-Endpunkt `GET /api/health`
+- [x] `client/`: Vite + Tailwind + Design-Tokens aus [07](07-ui-ux-design.md) (CSS-Variablen, Theme-Umschaltung), leeres 3-Spalten-Layout
+- [x] CI-Skript lokal: `npm run lint && npm test` grün
 
 **DoD:** `npm run dev` startet Client + Server; Health-Check ok; Theme umschaltbar.
 

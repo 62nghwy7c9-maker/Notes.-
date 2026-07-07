@@ -8,7 +8,21 @@ Eine persönliche Notizen-App, die Wissen nicht nur speichert, sondern aktiv org
 - 💬 **Kreativ-Agent** – liefert neue Ansätze zu den eigenen Notizen, dient als Sparringspartner im Chat und erstellt anschauliche Diagramme/Mindmaps
 - 🎨 **Design** – minimalistisch, organisiert, anschaulich
 
-**Status:** Planungsphase abgeschlossen – die Umsetzung kann direkt starten.
+**Status:** Umsetzung gestartet – **M0 (Fundament) steht**: Monorepo, geteilte Zod-Schemas, Hono-Server mit SQLite-Migration (inkl. FTS5) und Health-Endpunkt, Client-Grundgerüst mit Theme-Umschaltung. Als Nächstes M1 (Notizen & Ordner).
+
+## Entwicklung starten
+
+```bash
+# Voraussetzungen: Node.js ≥ 22, npm ≥ 10
+cp .env.example .env   # optional ANTHROPIC_API_KEY eintragen
+npm install
+npm run dev            # Client: http://localhost:5173 → /api proxied auf Server :3001
+
+npm run lint           # ESLint + tsc -b
+npm test               # Vitest (Server + Client)
+```
+
+Der Erststart legt `data/notes.db` an und führt die Migrationen aus; ohne API-Key läuft die App im rein manuellen Modus.
 
 ## Planungsdokumente
 

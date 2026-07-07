@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+
+/*
+ * Design-Tokens aus 07-ui-ux-design.md als CSS-Variablen.
+ * Theme-Umschaltung: hell = Default, dunkel entweder per data-theme="dark"
+ * (explizite Wahl) oder per prefers-color-scheme (System, ohne explizite Wahl).
+ */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --border: #e7e5e4;
+  --text: #1c1917;
+  --muted: #78716c;
+  --accent: #4f6ef7;
+  --accent-soft: #eef1fe;
+  --success: #16a34a;
+  --danger: #dc2626;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #111113;
+    --surface: #1a1a1e;
+    --border: #2a2a30;
+    --text: #ededef;
+    --muted: #8b8b93;
+    --accent: #7b93ff;
+    --accent-soft: #23283f;
+    --success: #4ade80;
+    --danger: #f87171;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #111113;
+  --surface: #1a1a1e;
+  --border: #2a2a30;
+  --text: #ededef;
+  --muted: #8b8b93;
+  --accent: #7b93ff;
+  --accent-soft: #23283f;
+  --success: #4ade80;
+  --danger: #f87171;
+}
+
+/* Tokens als Tailwind-Utilities verfügbar machen (bg-bg, text-text, …). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
