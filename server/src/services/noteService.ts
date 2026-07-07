@@ -9,9 +9,10 @@ import type {
 } from '@notes/shared';
 import type { Db } from '../db/client.js';
 import { folders, notes } from '../db/schema.js';
-import { notFound } from '../lib/errors.js';
+import { ServiceError, notFound } from '../lib/errors.js';
 import { uuidv7 } from '../lib/uuid.js';
 import { descendantIds } from './folderService.js';
+import { createLink } from './linkService.js';
 
 const TRASH_RETENTION_DAYS = 30;
 
@@ -124,14 +125,82 @@ export function createNote(db: Db, input: CreateNoteRequest): NoteWithTags {
   return toNoteWithTags(db, row);
 }
 
-/** Autosave (PUT): idempotent, last-write-wins. */
+/**
+ * `[[Titel]]`-Vorkommen aus Markdown extrahieren (F-14). Der TipTap-
+ * Markdown-Serializer escapt eckige Klammern (`\[\[Titel\]\]`) – beide
+ * Schreibweisen werden akzeptiert.
+ */
+export function parseWikiLinks(content: string): string[] {
+  const titles = new Set<string>();
+  for (const m of content.matchAll(/\\?\[\\?\[([^\][\n]+?)\\?\]\\?\]/g)) {
+    const title = m[1]!.trim();
+    if (title) titles.add(title);
+  }
+  return [...titles];
+}
+
+/**
+ * Wiki-Links mit dem Inhalt synchron halten: für jedes `[[Titel]]` eine
+ * `origin='wikilink'`-Verknüpfung (type `reference`) anlegen, verwaiste
+ * wikilink-Verknüpfungen dieser Notiz entfernen.
+ */
+function syncWikiLinks(db: Db, noteId: string, content: string): void {
+  const titles = parseWikiLinks(content);
+  const targets = new Map<string, string>(); // targetNoteId → Titel
+  for (const title of titles) {
+    const hit = db.get<{ id: string }>(sql`
+      SELECT id FROM notes
+      WHERE title = ${title} AND deleted_at IS NULL AND id != ${noteId}
+      ORDER BY created_at LIMIT 1
+    `);
+    if (hit) targets.set(hit.id, title);
+  }
+
+  const existing = db.all<{ id: string; targetId: string }>(sql`
+    SELECT id, target_id AS targetId FROM links
+    WHERE source_id = ${noteId} AND origin = 'wikilink'
+  `);
+  for (const link of existing) {
+    if (!targets.has(link.targetId))
+      db.run(sql`DELETE FROM links WHERE id = ${link.id}`);
+    else targets.delete(link.targetId);
+  }
+  for (const targetId of targets.keys()) {
+    try {
+      createLink(db, { sourceId: noteId, targetId, type: 'reference' }, 'wikilink');
+    } catch (err) {
+      // Manuelle reference-Verknüpfung existiert bereits → nichts zu tun.
+      if (!(err instanceof ServiceError && err.code === 'CONFLICT')) throw err;
+    }
+  }
+}
+
+/** Bei Umbenennung: `[[Alt]]` in allen anderen Notizen zu `[[Neu]]` (F-14). */
+function renameWikiLinks(db: Db, oldTitle: string, newTitle: string): void {
+  if (!oldTitle.trim() || oldTitle === newTitle) return;
+  const plainOld = `[[${oldTitle}]]`;
+  const plainNew = `[[${newTitle}]]`;
+  const escOld = `\\[\\[${oldTitle}\\]\\]`;
+  const escNew = `\\[\\[${newTitle}\\]\\]`;
+  db.run(sql`
+    UPDATE notes
+    SET content = REPLACE(REPLACE(content, ${escOld}, ${escNew}), ${plainOld}, ${plainNew}),
+        updated_at = ${Date.now()}
+    WHERE deleted_at IS NULL
+      AND (instr(content, ${plainOld}) > 0 OR instr(content, ${escOld}) > 0)
+  `);
+}
+
+/** Autosave (PUT): idempotent, last-write-wins; pflegt Wiki-Links (F-14). */
 export function putNote(db: Db, id: string, input: PutNoteRequest): NoteWithTags {
-  requireActiveNote(db, id);
+  const before = requireActiveNote(db, id);
   const now = Date.now();
   db.update(notes)
     .set({ title: input.title, content: input.content, updatedAt: now })
     .where(eq(notes.id, id))
     .run();
+  if (before.title !== input.title) renameWikiLinks(db, before.title, input.title);
+  syncWikiLinks(db, id, input.content);
   return getNote(db, id);
 }
 

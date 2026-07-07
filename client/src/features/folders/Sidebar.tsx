@@ -265,6 +265,7 @@ export function Sidebar() {
       </nav>
 
       <div className="shrink-0 border-t border-border p-2">
+        {navButton('◈ Graph', selection.kind === 'graph', () => select({ kind: 'graph' }))}
         {navButton('🗑 Papierkorb', selection.kind === 'trash', () =>
           select({ kind: 'trash' }),
         )}

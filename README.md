@@ -8,7 +8,7 @@ Eine persönliche Notizen-App, die Wissen nicht nur speichert, sondern aktiv org
 - 💬 **Kreativ-Agent** – liefert neue Ansätze zu den eigenen Notizen, dient als Sparringspartner im Chat und erstellt anschauliche Diagramme/Mindmaps
 - 🎨 **Design** – minimalistisch, organisiert, anschaulich
 
-**Status:** **M1 (Notizen & Ordner) fertig** – die App ist als manuelle Notizen-App voll benutzbar: verschachtelbare Ordner (Drag & Drop, Kontextmenüs), Notizen mit Markdown-Live-Editor und Autosave, Volltextsuche mit Command-Palette (`Ctrl/Cmd+K`), Papierkorb mit Wiederherstellung, Export als Markdown-ZIP. Als Nächstes M2 (Verknüpfungen & Ideen-Graph).
+**Status:** **M2 (Verknüpfungen & Ideen-Graph) fertig** – Notizen lassen sich mit Beziehungstypen verknüpfen („Verbunden"-Bereich, `[[Wiki-Links]]` mit Autocomplete und Umbenennungs-Sync) und im interaktiven Ideen-Graph erkunden (Canvas + D3-force im Web Worker, Zoom/Pan, Vorschau, Ordner-/Tag-Filter, „Nur Umfeld"; getestet mit 1 000 Notizen). Als Nächstes M3 (KI-Organisation).
 
 ## Entwicklung starten
 

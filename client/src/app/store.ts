@@ -4,7 +4,8 @@ import { create } from 'zustand';
 export type Selection =
   | { kind: 'inbox' }
   | { kind: 'folder'; folderId: string }
-  | { kind: 'trash' };
+  | { kind: 'trash' }
+  | { kind: 'graph' };
 
 interface UiState {
   selection: Selection;

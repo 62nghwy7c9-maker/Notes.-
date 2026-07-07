@@ -54,6 +54,14 @@ export function CommandPalette() {
         },
       },
       {
+        id: 'graph',
+        label: '◈ Graph öffnen',
+        run: () => {
+          select({ kind: 'graph' });
+          setPaletteOpen(false);
+        },
+      },
+      {
         id: 'trash',
         label: '🗑 Papierkorb öffnen',
         run: () => {

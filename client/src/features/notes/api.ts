@@ -63,6 +63,9 @@ export function useSaveNote() {
     onSuccess: (note) => {
       qc.setQueryData(['note', note.id], note);
       void qc.invalidateQueries({ queryKey: ['notes'] });
+      // Der Server pflegt [[Wiki-Links]] beim Speichern → Verknüpfungen auffrischen.
+      void qc.invalidateQueries({ queryKey: ['links', note.id] });
+      void qc.invalidateQueries({ queryKey: ['graph'] });
     },
   });
 }

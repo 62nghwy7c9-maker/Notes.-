@@ -26,12 +26,12 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 
 ## M2 – Verknüpfungen & Ideen-Graph (≈ 2–3 Tage)
 
-- [ ] `linkService` + Routen: CRUD mit paar-symmetrischem Duplikat-Check, Beziehungstypen (F-20)
-- [ ] Editor: Bereich „Verbunden (n)", Dialog „+ Verknüpfung" (Notiz-Suche + Typwahl + Begründung) (F-21/24)
-- [ ] `[[Wiki-Link]]`-Autocomplete im Editor, erzeugt `origin='wikilink'`-Links, hält sie bei Umbenennung synchron (F-14)
-- [ ] `GET /graph` + Graph-Ansicht: D3-force im Web Worker, Canvas-Rendering, Farb-/Größen-Kodierung, Kantenstile (F-22)
-- [ ] Graph-Interaktion: Zoom/Pan, Hover-Karte, Klick-Vorschau, Doppelklick öffnen, Filter Ordner/Tag, „Nur Umfeld"-Modus (F-23)
-- [ ] Tests: linkService-Units, Graph-Payload-Vertrag; manueller Performance-Check mit 1 000 Seed-Notizen (Skript)
+- [x] `linkService` + Routen: CRUD mit paar-symmetrischem Duplikat-Check, Beziehungstypen (F-20)
+- [x] Editor: Bereich „Verbunden (n)", Dialog „+ Verknüpfung" (Notiz-Suche + Typwahl + Begründung) (F-21/24)
+- [x] `[[Wiki-Link]]`-Autocomplete im Editor, erzeugt `origin='wikilink'`-Links, hält sie bei Umbenennung synchron (F-14)
+- [x] `GET /graph` + Graph-Ansicht: D3-force im Web Worker, Canvas-Rendering, Farb-/Größen-Kodierung, Kantenstile (F-22)
+- [x] Graph-Interaktion: Zoom/Pan, Hover-Karte, Klick-Vorschau, Doppelklick öffnen, Filter Ordner/Tag, „Nur Umfeld"-Modus (F-23)
+- [x] Tests: linkService-Units, Graph-Payload-Vertrag; manueller Performance-Check mit 1 000 Seed-Notizen (Skript)
 
 **DoD:** Ideennetz manuell pflegbar und im Graph flüssig erkundbar (Erfolgskriterium 4).
 

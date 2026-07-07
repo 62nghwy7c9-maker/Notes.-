@@ -163,6 +163,35 @@ body {
   text-decoration: line-through;
 }
 
+/* [[Wiki-Link]]-Autocomplete-Popover */
+.wiki-suggest {
+  position: fixed;
+  z-index: 60;
+  min-width: 220px;
+  max-width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+}
+.wiki-suggest-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text);
+  padding: 6px 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wiki-suggest-item.is-active,
+.wiki-suggest-item:hover {
+  background: var(--accent-soft);
+}
+
 /* Placeholder der leeren Editor-Fläche */
 .tiptap-content p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);

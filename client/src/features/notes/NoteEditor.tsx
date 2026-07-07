@@ -8,7 +8,9 @@ import { Markdown } from 'tiptap-markdown';
 import { useUiStore } from '../../app/store.js';
 import { useFolderTree } from '../folders/api.js';
 import { findPath } from '../folders/util.js';
+import { LinkedNotes } from '../links/LinkedNotes.js';
 import { useNote, useSaveNote } from './api.js';
+import { WikiLinkSuggestion } from './wikiLinkSuggestion.js';
 
 type SaveState = 'saved' | 'pending' | 'saving';
 
@@ -37,6 +39,7 @@ export function NoteEditor() {
       TaskItem.configure({ nested: true }),
       Placeholder.configure({ placeholder: 'Schreib los … (Markdown wird live gerendert)' }),
       Markdown.configure({ html: false, transformPastedText: true }),
+      WikiLinkSuggestion,
     ],
     editorProps: {
       attributes: { class: 'tiptap-content focus:outline-none' },
@@ -45,20 +48,24 @@ export function NoteEditor() {
   });
 
   const doSave = useCallback(() => {
-    if (!noteId || !editor) return;
+    // Wichtig: immer die Notiz speichern, deren Inhalt im Editor GELADEN ist –
+    // nicht die aktuell ausgewählte. Sonst schreibt der Flush beim schnellen
+    // Notizwechsel alten Inhalt in die neu geöffnete Notiz.
+    const id = loadedNoteId.current;
+    if (!id || !editor) return;
     // tiptap-markdown liefert keine Typen für seinen Storage-Eintrag.
     const markdown = (
       editor.storage as unknown as { markdown: { getMarkdown: () => string } }
     ).markdown.getMarkdown();
     setSaveState('saving');
     save.mutate(
-      { id: noteId, title, content: markdown },
+      { id, title, content: markdown },
       {
         onSuccess: () => setSaveState('saved'),
         onError: () => setSaveState('pending'),
       },
     );
-  }, [noteId, editor, title, save]);
+  }, [editor, title, save]);
 
   const doSaveRef = useRef(doSave);
   doSaveRef.current = doSave;
@@ -66,7 +73,10 @@ export function NoteEditor() {
   const scheduleSave = useCallback(() => {
     setSaveState('pending');
     if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => doSaveRef.current(), AUTOSAVE_DELAY_MS);
+    timer.current = setTimeout(() => {
+      timer.current = null;
+      doSaveRef.current();
+    }, AUTOSAVE_DELAY_MS);
   }, []);
 
   // Notizwechsel: Inhalt in den Editor laden (nicht bei jedem Refetch).
@@ -79,11 +89,13 @@ export function NoteEditor() {
     setSaveState('saved');
   }, [editor, note.data]);
 
-  // Beim Schließen/Wechseln ausstehende Änderung sofort sichern.
+  // Beim Schließen/Wechseln ausstehende Änderung sofort sichern (Flush).
+  // Läuft vor dem Laden der neuen Notiz; loadedNoteId zeigt noch auf die alte.
   useEffect(
     () => () => {
       if (timer.current) {
         clearTimeout(timer.current);
+        timer.current = null;
         doSaveRef.current();
       }
     },
@@ -125,6 +137,7 @@ export function NoteEditor() {
           className="w-full bg-transparent text-[30px] font-bold outline-none placeholder:text-muted"
         />
         <EditorContent editor={editor} className="mt-3" />
+        <LinkedNotes noteId={noteId} />
       </div>
     </section>
   );

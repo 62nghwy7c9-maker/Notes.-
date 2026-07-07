@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Sidebar } from '../features/folders/Sidebar.js';
+import { GraphView } from '../features/graph/GraphView.js';
 import { NoteList } from '../features/notes/NoteList.js';
 import { NoteEditor } from '../features/notes/NoteEditor.js';
 import { TrashList } from '../features/notes/TrashList.js';
@@ -19,6 +20,9 @@ export function AppLayout() {
       if (e.key === 'k') {
         e.preventDefault();
         setPaletteOpen(true);
+      } else if (e.key === 'g') {
+        e.preventDefault();
+        useUiStore.getState().select({ kind: 'graph' });
       } else if (e.key === 'n') {
         e.preventDefault();
         const sel = useUiStore.getState().selection;
@@ -37,6 +41,8 @@ export function AppLayout() {
       <Sidebar />
       {selection.kind === 'trash' ? (
         <TrashList />
+      ) : selection.kind === 'graph' ? (
+        <GraphView />
       ) : (
         <>
           <NoteList />

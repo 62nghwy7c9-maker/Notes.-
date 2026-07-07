@@ -10,6 +10,8 @@ import { registerFolderRoutes } from './routes/folders.js';
 import { registerNoteRoutes } from './routes/notes.js';
 import { registerSearchRoute } from './routes/search.js';
 import { registerExportRoute } from './routes/export.js';
+import { registerLinkRoutes } from './routes/links.js';
+import { registerGraphRoutes } from './routes/graph.js';
 
 export const APP_VERSION = '0.1.0';
 
@@ -28,6 +30,8 @@ export function createApp(deps: AppDeps): Hono {
   registerNoteRoutes(api, deps);
   registerSearchRoute(api, deps);
   registerExportRoute(api, deps);
+  registerLinkRoutes(api, deps);
+  registerGraphRoutes(api, deps);
 
   app.route('/api', api);
 
