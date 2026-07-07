@@ -25,6 +25,7 @@ Die vollständige Planung liegt in [`docs/planning/`](docs/planning/) und ist so
 | [07 – UI/UX-Design](docs/planning/07-ui-ux-design.md) | Design-System (Farben, Typografie), Wireframes aller Screens, Shortcuts |
 | [08 – Projektstruktur](docs/planning/08-projektstruktur.md) | Monorepo-Layout, Konventionen, Env-Variablen, Setup, Teststrategie |
 | [09 – Roadmap](docs/planning/09-roadmap.md) | Umsetzungsphasen M0–M5 mit abhakbaren Tasks, Definition of Done, Risiken |
+| [10 – Ausbauplanung](docs/planning/10-ausbauplanung.md) | Post-MVP-Ausbaustufen A–E (Embeddings, Import, Wochen-Impuls, Bilder, Desktop) mit Datenmodell-/API-Erweiterungen und DoD |
 
 ## Kurzüberblick der Technik
 

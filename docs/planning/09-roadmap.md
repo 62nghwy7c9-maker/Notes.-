@@ -71,13 +71,17 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 
 **DoD:** Alle Erfolgskriterien aus [01](01-vision-und-scope.md) erfüllt; Lint + Tests grün; App per `npm start` produktiv nutzbar.
 
-## Post-MVP-Ideen (bewusst unpriorisiert)
+## Post-MVP-Ideen → ausformuliert in [10 – Ausbauplanung](10-ausbauplanung.md)
 
-- Embedding-Index für bessere Verknüpfungs-Kandidaten (Stufe 2 aus [06](06-ki-features.md))
-- KI-Bildgenerierung als Agent-Tool (`attachments`-Tabelle)
-- Tauri-Wrapper für echte Desktop-App (E1-Alternative)
-- Automatischer wöchentlicher „Wochen-Impuls" per Zeitplan
-- Import bestehender Markdown-Sammlungen (Obsidian-Vault)
+Die folgenden Ideen sind in [10-ausbauplanung.md](10-ausbauplanung.md) zu umsetzbaren Ausbaustufen A–E (mit Datenmodell-, API- und DoD-Detail) ausgearbeitet:
+
+- **A** – Embedding-Index für bessere Verknüpfungs-Kandidaten (Stufe 2 aus [06](06-ki-features.md))
+- **B** – Import bestehender Markdown-Sammlungen (Obsidian-Vault)
+- **C** – Automatischer wöchentlicher „Wochen-Impuls" per Zeitplan
+- **D** – KI-Bildgenerierung als Agent-Tool (`attachments`-Tabelle)
+- **E** – Tauri-Wrapper für echte Desktop-App (E1-Alternative)
+
+Empfohlene Reihenfolge nach Nutzen/Aufwand: A → B → C → E → D.
 
 ## Risiken & Gegenmaßnahmen
 
