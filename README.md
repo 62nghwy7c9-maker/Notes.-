@@ -8,7 +8,7 @@ Eine persönliche Notizen-App, die Wissen nicht nur speichert, sondern aktiv org
 - 💬 **Kreativ-Agent** – liefert neue Ansätze zu den eigenen Notizen, dient als Sparringspartner im Chat und erstellt anschauliche Diagramme/Mindmaps
 - 🎨 **Design** – minimalistisch, organisiert, anschaulich
 
-**Status:** Umsetzung gestartet – **M0 (Fundament) steht**: Monorepo, geteilte Zod-Schemas, Hono-Server mit SQLite-Migration (inkl. FTS5) und Health-Endpunkt, Client-Grundgerüst mit Theme-Umschaltung. Als Nächstes M1 (Notizen & Ordner).
+**Status:** **M1 (Notizen & Ordner) fertig** – die App ist als manuelle Notizen-App voll benutzbar: verschachtelbare Ordner (Drag & Drop, Kontextmenüs), Notizen mit Markdown-Live-Editor und Autosave, Volltextsuche mit Command-Palette (`Ctrl/Cmd+K`), Papierkorb mit Wiederherstellung, Export als Markdown-ZIP. Als Nächstes M2 (Verknüpfungen & Ideen-Graph).
 
 ## Entwicklung starten
 

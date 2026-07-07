@@ -40,18 +40,22 @@ CREATE VIRTUAL TABLE notes_fts USING fts5(
 );
 
 -- FTS-Trigger: gelöschte Notizen (deleted_at gesetzt) bleiben aus dem Index.
+-- Wichtig: der 'delete'-Befehl darf im External-Content-Modus nur für Zeilen
+-- laufen, die tatsächlich indiziert sind (deleted_at war NULL) — sonst
+-- korrumpiert der Index (SQLITE_CORRUPT_VTAB).
 CREATE TRIGGER notes_fts_ai AFTER INSERT ON notes WHEN new.deleted_at IS NULL BEGIN
     INSERT INTO notes_fts(rowid, title, content) VALUES (new.rowid, new.title, new.content);
 END;
-CREATE TRIGGER notes_fts_ad AFTER DELETE ON notes BEGIN
+CREATE TRIGGER notes_fts_ad AFTER DELETE ON notes WHEN old.deleted_at IS NULL BEGIN
     INSERT INTO notes_fts(notes_fts, rowid, title, content)
         VALUES ('delete', old.rowid, old.title, old.content);
 END;
-CREATE TRIGGER notes_fts_au AFTER UPDATE ON notes BEGIN
+CREATE TRIGGER notes_fts_au_del AFTER UPDATE ON notes WHEN old.deleted_at IS NULL BEGIN
     INSERT INTO notes_fts(notes_fts, rowid, title, content)
         VALUES ('delete', old.rowid, old.title, old.content);
-    INSERT INTO notes_fts(rowid, title, content)
-        SELECT new.rowid, new.title, new.content WHERE new.deleted_at IS NULL;
+END;
+CREATE TRIGGER notes_fts_au_ins AFTER UPDATE ON notes WHEN new.deleted_at IS NULL BEGIN
+    INSERT INTO notes_fts(rowid, title, content) VALUES (new.rowid, new.title, new.content);
 END;
 
 -- Verknüpfungen zwischen Notizen (F-20)

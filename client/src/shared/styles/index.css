@@ -72,3 +72,102 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
+
+/* --- Editor-Typografie (TipTap, 07-ui-ux-design.md: 16px / 1.7) --- */
+.tiptap-content {
+  font-size: 16px;
+  line-height: 1.7;
+  min-height: 40vh;
+}
+.tiptap-content h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 1em 0 0.4em;
+}
+.tiptap-content h2 {
+  font-size: 24px;
+  font-weight: 650;
+  margin: 1em 0 0.35em;
+}
+.tiptap-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0.9em 0 0.3em;
+}
+.tiptap-content p {
+  margin: 0.4em 0;
+}
+.tiptap-content ul,
+.tiptap-content ol {
+  padding-left: 1.4em;
+  margin: 0.4em 0;
+}
+.tiptap-content ul {
+  list-style: disc;
+}
+.tiptap-content ol {
+  list-style: decimal;
+}
+.tiptap-content blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 12px;
+  color: var(--muted);
+  margin: 0.6em 0;
+}
+.tiptap-content code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--accent-soft);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.tiptap-content pre {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+  margin: 0.6em 0;
+}
+.tiptap-content pre code {
+  background: none;
+  padding: 0;
+}
+.tiptap-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.2em 0;
+}
+.tiptap-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Checkboxen (TaskList) */
+.tiptap-content ul[data-type='taskList'] {
+  list-style: none;
+  padding-left: 0.2em;
+}
+.tiptap-content ul[data-type='taskList'] li {
+  display: flex;
+  gap: 8px;
+}
+.tiptap-content ul[data-type='taskList'] li > label {
+  flex: 0 0 auto;
+  user-select: none;
+}
+.tiptap-content ul[data-type='taskList'] li[data-checked='true'] > div {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+/* Placeholder der leeren Editor-Fläche */
+.tiptap-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}

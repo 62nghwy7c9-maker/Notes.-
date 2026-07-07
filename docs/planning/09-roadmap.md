@@ -14,13 +14,13 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 
 ## M1 – Notizen & Ordner (≈ 2–3 Tage)
 
-- [ ] `folderService` + Routen: CRUD, Baum, Verschieben mit Zyklen-Check, Löschen mit `cascade|lift` (F-01–F-04)
-- [ ] Sidebar: Ordnerbaum mit Drag & Drop, Kontextmenü, Icons, „Eingang" (F-02/03/06)
-- [ ] `noteService` + Routen: CRUD, Autosave (`PUT`), Papierkorb inkl. Aufräum-Job (F-10/12)
-- [ ] Notizliste (Karten, Sortierung, Kontextmenü) + TipTap-Editor mit Markdown-Live-Rendering, Autosave-Hook, Speicherstatus (F-10/11)
-- [ ] FTS5-Suche + Command-Palette `Ctrl/Cmd+K` (F-13, Teil von F-51)
-- [ ] Export als Markdown-ZIP (F-16)
-- [ ] Tests: folder-/noteService-Units (Zyklen, Papierkorb), API-Vertragstests
+- [x] `folderService` + Routen: CRUD, Baum, Verschieben mit Zyklen-Check, Löschen mit `cascade|lift` (F-01–F-04)
+- [x] Sidebar: Ordnerbaum mit Drag & Drop, Kontextmenü, Icons, „Eingang" (F-02/03/06)
+- [x] `noteService` + Routen: CRUD, Autosave (`PUT`), Papierkorb inkl. Aufräum-Job (F-10/12)
+- [x] Notizliste (Karten, Sortierung, Kontextmenü) + TipTap-Editor mit Markdown-Live-Rendering, Autosave-Hook, Speicherstatus (F-10/11)
+- [x] FTS5-Suche + Command-Palette `Ctrl/Cmd+K` (F-13, Teil von F-51)
+- [x] Export als Markdown-ZIP (F-16)
+- [x] Tests: folder-/noteService-Units (Zyklen, Papierkorb), API-Vertragstests
 
 **DoD:** Vollwertige manuelle Notizen-App – Ordner beliebig verschachtelbar, Editor angenehm, Suche findet Inhalte, Papierkorb funktioniert.
 
