@@ -4,34 +4,34 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 
 ## M0 – Fundament (≈ 0,5–1 Tag)
 
-- [ ] Monorepo gemäß [08-projektstruktur.md](08-projektstruktur.md) aufsetzen (workspaces, tsconfig, ESLint, Vitest, `.env.example`, `.gitignore`)
-- [ ] `shared/`: Entitäts- und API-Schemas (Zod) aus [04](04-datenmodell.md)/[05](05-api-spezifikation.md) anlegen
-- [ ] `server/`: Hono-Bootstrap, Drizzle-Schema + Migration 0001 inkl. FTS5-Triggern, Health-Endpunkt `GET /api/health`
-- [ ] `client/`: Vite + Tailwind + Design-Tokens aus [07](07-ui-ux-design.md) (CSS-Variablen, Theme-Umschaltung), leeres 3-Spalten-Layout
-- [ ] CI-Skript lokal: `npm run lint && npm test` grün
+- [x] Monorepo gemäß [08-projektstruktur.md](08-projektstruktur.md) aufsetzen (workspaces, tsconfig, ESLint, Vitest, `.env.example`, `.gitignore`)
+- [x] `shared/`: Entitäts- und API-Schemas (Zod) aus [04](04-datenmodell.md)/[05](05-api-spezifikation.md) anlegen
+- [x] `server/`: Hono-Bootstrap, Drizzle-Schema + Migration 0001 inkl. FTS5-Triggern, Health-Endpunkt `GET /api/health`
+- [x] `client/`: Vite + Tailwind + Design-Tokens aus [07](07-ui-ux-design.md) (CSS-Variablen, Theme-Umschaltung), leeres 3-Spalten-Layout
+- [x] CI-Skript lokal: `npm run lint && npm test` grün
 
 **DoD:** `npm run dev` startet Client + Server; Health-Check ok; Theme umschaltbar.
 
 ## M1 – Notizen & Ordner (≈ 2–3 Tage)
 
-- [ ] `folderService` + Routen: CRUD, Baum, Verschieben mit Zyklen-Check, Löschen mit `cascade|lift` (F-01–F-04)
-- [ ] Sidebar: Ordnerbaum mit Drag & Drop, Kontextmenü, Icons, „Eingang" (F-02/03/06)
-- [ ] `noteService` + Routen: CRUD, Autosave (`PUT`), Papierkorb inkl. Aufräum-Job (F-10/12)
-- [ ] Notizliste (Karten, Sortierung, Kontextmenü) + TipTap-Editor mit Markdown-Live-Rendering, Autosave-Hook, Speicherstatus (F-10/11)
-- [ ] FTS5-Suche + Command-Palette `Ctrl/Cmd+K` (F-13, Teil von F-51)
-- [ ] Export als Markdown-ZIP (F-16)
-- [ ] Tests: folder-/noteService-Units (Zyklen, Papierkorb), API-Vertragstests
+- [x] `folderService` + Routen: CRUD, Baum, Verschieben mit Zyklen-Check, Löschen mit `cascade|lift` (F-01–F-04)
+- [x] Sidebar: Ordnerbaum mit Drag & Drop, Kontextmenü, Icons, „Eingang" (F-02/03/06)
+- [x] `noteService` + Routen: CRUD, Autosave (`PUT`), Papierkorb inkl. Aufräum-Job (F-10/12)
+- [x] Notizliste (Karten, Sortierung, Kontextmenü) + TipTap-Editor mit Markdown-Live-Rendering, Autosave-Hook, Speicherstatus (F-10/11)
+- [x] FTS5-Suche + Command-Palette `Ctrl/Cmd+K` (F-13, Teil von F-51)
+- [x] Export als Markdown-ZIP (F-16)
+- [x] Tests: folder-/noteService-Units (Zyklen, Papierkorb), API-Vertragstests
 
 **DoD:** Vollwertige manuelle Notizen-App – Ordner beliebig verschachtelbar, Editor angenehm, Suche findet Inhalte, Papierkorb funktioniert.
 
 ## M2 – Verknüpfungen & Ideen-Graph (≈ 2–3 Tage)
 
-- [ ] `linkService` + Routen: CRUD mit paar-symmetrischem Duplikat-Check, Beziehungstypen (F-20)
-- [ ] Editor: Bereich „Verbunden (n)", Dialog „+ Verknüpfung" (Notiz-Suche + Typwahl + Begründung) (F-21/24)
-- [ ] `[[Wiki-Link]]`-Autocomplete im Editor, erzeugt `origin='wikilink'`-Links, hält sie bei Umbenennung synchron (F-14)
-- [ ] `GET /graph` + Graph-Ansicht: D3-force im Web Worker, Canvas-Rendering, Farb-/Größen-Kodierung, Kantenstile (F-22)
-- [ ] Graph-Interaktion: Zoom/Pan, Hover-Karte, Klick-Vorschau, Doppelklick öffnen, Filter Ordner/Tag, „Nur Umfeld"-Modus (F-23)
-- [ ] Tests: linkService-Units, Graph-Payload-Vertrag; manueller Performance-Check mit 1 000 Seed-Notizen (Skript)
+- [x] `linkService` + Routen: CRUD mit paar-symmetrischem Duplikat-Check, Beziehungstypen (F-20)
+- [x] Editor: Bereich „Verbunden (n)", Dialog „+ Verknüpfung" (Notiz-Suche + Typwahl + Begründung) (F-21/24)
+- [x] `[[Wiki-Link]]`-Autocomplete im Editor, erzeugt `origin='wikilink'`-Links, hält sie bei Umbenennung synchron (F-14)
+- [x] `GET /graph` + Graph-Ansicht: D3-force im Web Worker, Canvas-Rendering, Farb-/Größen-Kodierung, Kantenstile (F-22)
+- [x] Graph-Interaktion: Zoom/Pan, Hover-Karte, Klick-Vorschau, Doppelklick öffnen, Filter Ordner/Tag, „Nur Umfeld"-Modus (F-23)
+- [x] Tests: linkService-Units, Graph-Payload-Vertrag; manueller Performance-Check mit 1 000 Seed-Notizen (Skript)
 
 **DoD:** Ideennetz manuell pflegbar und im Graph flüssig erkundbar (Erfolgskriterium 4).
 
@@ -67,7 +67,7 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 - [ ] Responsive-Verhalten < 1 100 px / < 800 px; PWA-Manifest + Service Worker (Read-only offline) (F-52)
 - [ ] A11y-Pass: Tastaturnavigation komplett, Fokus-Ringe, Kontraste (NF-05)
 - [ ] Performance-Pass: Editor-Tipplatenz, Graph mit 1 000 Notizen, Suchlatenz (NF-01)
-- [ ] `npm run build && npm start` als Ein-Prozess-Deployment verifizieren; README des Repos mit Nutzungsanleitung finalisieren
+- [x] `npm run build && npm start` als Ein-Prozess-Deployment verifizieren; README des Repos mit Nutzungsanleitung finalisieren *(vorgezogen: lokale Nutzung statt Cloud-Deployment)*
 
 **DoD:** Alle Erfolgskriterien aus [01](01-vision-und-scope.md) erfüllt; Lint + Tests grün; App per `npm start` produktiv nutzbar.
 
