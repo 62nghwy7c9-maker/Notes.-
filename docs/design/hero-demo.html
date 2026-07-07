@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Startklar — Hero (Demo & Einbau-Vorlage)</title>
+  <style>
+    /* =========================================================
+       STARTKLAR HERO — einbaufertig
+       Farbwelt:  Olive Leaf #606C38 · Black Forest #283618 · Cornsilk #FEFAE0
+       So einbauen:
+       1. Higgsfield-Video als /hero.mp4 und Standbild als /hero.jpg ablegen
+       2. Im <video>-Block unten die zwei auskommentierten Zeilen aktivieren
+          und den .hero__placeholder-Block entfernen
+       ========================================================= */
+    :root{
+      --olive:#606C38;
+      --forest:#283618;
+      --cornsilk:#FEFAE0;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+
+    .hero{
+      position:relative;
+      width:100%;
+      height:100svh;          /* füllt den Viewport, respektiert Mobile-Browserleisten */
+      min-height:560px;
+      overflow:hidden;
+      /* Poster als Fallback: greift auf Mobile & bei prefers-reduced-motion,
+         wo das Video ausgeblendet wird */
+      background:var(--forest) url('hero.jpg') center/cover no-repeat;
+    }
+
+    /* Das eigentliche Medium: Video (mit Foto als Poster) */
+    .hero__media{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* --- PLATZHALTER (entfernen, sobald /hero.mp4 + /hero.jpg existieren) --- */
+    .hero__placeholder{
+      position:absolute;inset:0;
+      background:
+        radial-gradient(120% 90% at 50% 8%, var(--cornsilk) 0%, #f3ecc4 26%, transparent 60%),
+        linear-gradient(180deg, #eee6bf 0%, #b9b985 42%, var(--olive) 74%, var(--forest) 100%);
+    }
+    /* angedeutete Wieseninsel + Papierflieger, damit die Komposition sichtbar ist */
+    .hero__placeholder::after{
+      content:"✈";
+      position:absolute;top:30%;left:57%;
+      font-size:clamp(22px,3vw,40px);
+      color:var(--cornsilk);
+      transform:rotate(-18deg);
+      text-shadow:0 2px 10px rgba(40,54,24,.35);
+      opacity:.9;
+    }
+    .hero__island{
+      position:absolute;left:50%;bottom:-2%;
+      width:min(680px,86vw);height:38%;
+      transform:translateX(-50%);
+      background:radial-gradient(80% 120% at 50% 0%, var(--olive) 0%, #4c5730 60%, var(--forest) 100%);
+      border-radius:50% 50% 44% 44% / 70% 70% 30% 30%;
+      box-shadow:0 30px 80px rgba(40,54,24,.45);
+      filter:blur(.3px);
+    }
+    /* ----------------------------------------------------------------------- */
+
+    /* leichter Abdunkler oben für Textlesbarkeit (dezent) */
+    .hero__scrim{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(40,54,24,.28) 0%, rgba(40,54,24,0) 42%);
+      pointer-events:none;
+    }
+
+    .hero__content{
+      position:relative;z-index:2;
+      height:100%;
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:flex-start;
+      text-align:center;
+      padding:clamp(48px,12vh,140px) 24px 0;
+    }
+    .hero__eyebrow{
+      color:var(--cornsilk);
+      letter-spacing:.28em;text-transform:uppercase;
+      font-size:clamp(11px,1.3vw,14px);
+      opacity:.85;margin-bottom:18px;
+      text-shadow:0 1px 12px rgba(40,54,24,.5);
+    }
+    .hero__title{
+      color:var(--cornsilk);
+      font-size:clamp(2.2rem,6.2vw,4.6rem);
+      line-height:1.05;
+      font-weight:700;
+      text-shadow:0 2px 28px rgba(40,54,24,.5);
+      max-width:16ch;
+    }
+    .hero__title em{font-style:italic;font-weight:600}
+    .hero__cta{
+      margin-top:clamp(22px,4vh,34px);
+      display:inline-block;
+      background:var(--forest);
+      color:var(--cornsilk);
+      padding:.95rem 2.2rem;
+      border-radius:999px;
+      font-size:clamp(15px,1.6vw,18px);
+      font-weight:600;
+      text-decoration:none;
+      transition:background .2s ease, transform .2s ease;
+      box-shadow:0 8px 24px rgba(40,54,24,.35);
+    }
+    .hero__cta:hover{background:var(--olive);transform:translateY(-2px)}
+
+    /* Weniger Bewegung für Menschen, die das eingestellt haben */
+    @media (prefers-reduced-motion: reduce){
+      .hero__media{display:none}
+    }
+    /* Auf sehr schmalen Screens Video sparen (Poster/Placeholder reicht) */
+    @media (max-width:600px){
+      .hero__media{display:none}
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <!-- === MEDIUM === -->
+    <!-- hero.mp4 + hero.jpg liegen im selben Ordner (relative Pfade, damit die
+         Demo direkt im Browser funktioniert). In der echten Seite: /hero.mp4 + /hero.jpg -->
+    <video class="hero__media" autoplay muted loop playsinline poster="hero.jpg">
+      <source src="hero.mp4" type="video/mp4" />
+    </video>
+
+    <div class="hero__scrim"></div>
+
+    <!-- === TEXT im oberen Negativraum === -->
+    <div class="hero__content">
+      <p class="hero__eyebrow">Startklar</p>
+      <h1 class="hero__title">Bereit fürs <em>echte</em> Leben.</h1>
+      <a class="hero__cta" href="#start">Jetzt startklar werden</a>
+    </div>
+  </section>
+</body>
+</html>
