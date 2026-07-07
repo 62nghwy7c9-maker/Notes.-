@@ -91,3 +91,4 @@ Diese Entscheidungen wurden mit den jeweils empfohlenen Standardoptionen getroff
 7. [07-ui-ux-design.md](07-ui-ux-design.md) – Design-System und Screens
 8. [08-projektstruktur.md](08-projektstruktur.md) – Code-Organisation und Setup
 9. [09-roadmap.md](09-roadmap.md) – Umsetzungsplan mit Tasks
+10. [10-spezifikation-runde-2.md](10-spezifikation-runde-2.md) – verbindliche technische Klärungen (K1–K8) für den Umsetzungsstart
