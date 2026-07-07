@@ -10,19 +10,32 @@ Eine persönliche Notizen-App, die Wissen nicht nur speichert, sondern aktiv org
 
 **Status:** **M2 (Verknüpfungen & Ideen-Graph) fertig** – Notizen lassen sich mit Beziehungstypen verknüpfen („Verbunden"-Bereich, `[[Wiki-Links]]` mit Autocomplete und Umbenennungs-Sync) und im interaktiven Ideen-Graph erkunden (Canvas + D3-force im Web Worker, Zoom/Pan, Vorschau, Ordner-/Tag-Filter, „Nur Umfeld"; getestet mit 1 000 Notizen). Als Nächstes M3 (KI-Organisation).
 
-## Entwicklung starten
+## App nutzen (lokal)
 
 ```bash
-# Voraussetzungen: Node.js ≥ 22, npm ≥ 10
-cp .env.example .env   # optional ANTHROPIC_API_KEY eintragen
+# Einmalig: Node.js ≥ 22 installieren (https://nodejs.org), dann:
+git clone https://github.com/62nghwy7c9-maker/Notes.-.git && cd Notes.-
 npm install
+npm run build
+
+# Danach zum Starten immer nur:
+npm start              # → App im Browser öffnen: http://localhost:3001
+```
+
+Alle Notizen liegen lokal in `data/notes.db` (wird beim ersten Start angelegt, Migrationen laufen automatisch, vor Migrationen wird ein Backup erstellt). Die App bindet nur an `127.0.0.1` – nichts verlässt deinen Rechner.
+
+## Entwicklung
+
+```bash
+cp .env.example .env   # optional ANTHROPIC_API_KEY eintragen
 npm run dev            # Client: http://localhost:5173 → /api proxied auf Server :3001
 
 npm run lint           # ESLint + tsc -b
 npm test               # Vitest (Server + Client)
+npx tsx server/src/scripts/seed.ts 1000   # Testdaten für den Graph-Performance-Check
 ```
 
-Der Erststart legt `data/notes.db` an und führt die Migrationen aus; ohne API-Key läuft die App im rein manuellen Modus.
+Ohne API-Key läuft die App im rein manuellen Modus (KI-Features ab M3 sind dann ausgeblendet).
 
 ## Planungsdokumente
 

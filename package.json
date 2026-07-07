@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "concurrently -n server,client -c blue,magenta \"npm:dev -w @notes/server\" \"npm:dev -w @notes/client\"",
     "build": "npm run build -w @notes/shared -w @notes/server -w @notes/client",
-    "start": "node server/dist/index.js",
+    "start": "tsx --tsconfig server/tsconfig.json server/src/index.ts",
     "db:generate": "drizzle-kit generate --config server/drizzle.config.ts",
     "test": "vitest run",
     "lint": "eslint . && tsc -b"

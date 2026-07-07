@@ -67,7 +67,7 @@ Sechs Phasen M0–M5. Jede Phase endet mit einem benutzbaren Zwischenstand („D
 - [ ] Responsive-Verhalten < 1 100 px / < 800 px; PWA-Manifest + Service Worker (Read-only offline) (F-52)
 - [ ] A11y-Pass: Tastaturnavigation komplett, Fokus-Ringe, Kontraste (NF-05)
 - [ ] Performance-Pass: Editor-Tipplatenz, Graph mit 1 000 Notizen, Suchlatenz (NF-01)
-- [ ] `npm run build && npm start` als Ein-Prozess-Deployment verifizieren; README des Repos mit Nutzungsanleitung finalisieren
+- [x] `npm run build && npm start` als Ein-Prozess-Deployment verifizieren; README des Repos mit Nutzungsanleitung finalisieren *(vorgezogen: lokale Nutzung statt Cloud-Deployment)*
 
 **DoD:** Alle Erfolgskriterien aus [01](01-vision-und-scope.md) erfüllt; Lint + Tests grün; App per `npm start` produktiv nutzbar.
 
