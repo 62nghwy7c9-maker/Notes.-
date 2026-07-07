@@ -3,12 +3,12 @@
 // Assets:            public/hero.mp4 (Higgsfield-Video) · public/hero.jpg (Standbild/Poster)
 // Einbau:            in src/App.(jsx|tsx) ganz oben rendern:  <Hero />
 //
-// Solange die Assets fehlen, zeigt die Komponente automatisch den Farb-Platzhalter.
-// Sobald public/hero.mp4 existiert, HAS_MEDIA auf true setzen.
+// Die fertigen Assets liegen in diesem Ordner (docs/design/hero.mp4 + hero.jpg)
+// und müssen nur nach public/ kopiert werden.
 
 import './Hero.css';
 
-const HAS_MEDIA = false; // -> true, sobald public/hero.mp4 + public/hero.jpg vorhanden sind
+const HAS_MEDIA = true; // Assets vorhanden: public/hero.mp4 + public/hero.jpg
 
 export default function Hero() {
   return (

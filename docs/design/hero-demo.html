@@ -28,7 +28,9 @@
       height:100svh;          /* füllt den Viewport, respektiert Mobile-Browserleisten */
       min-height:560px;
       overflow:hidden;
-      background:var(--forest);
+      /* Poster als Fallback: greift auf Mobile & bei prefers-reduced-motion,
+         wo das Video ausgeblendet wird */
+      background:var(--forest) url('hero.jpg') center/cover no-repeat;
     }
 
     /* Das eigentliche Medium: Video (mit Foto als Poster) */
@@ -126,18 +128,11 @@
 <body>
   <section class="hero">
     <!-- === MEDIUM === -->
-    <!-- Sobald die Higgsfield-Dateien da sind: die nächste <video>-Zeile aktivieren
-         und den .hero__placeholder / .hero__island Block darunter löschen. -->
-    <!--
-    <video class="hero__media" autoplay muted loop playsinline poster="/hero.jpg">
-      <source src="/hero.mp4" type="video/mp4" />
+    <!-- hero.mp4 + hero.jpg liegen im selben Ordner (relative Pfade, damit die
+         Demo direkt im Browser funktioniert). In der echten Seite: /hero.mp4 + /hero.jpg -->
+    <video class="hero__media" autoplay muted loop playsinline poster="hero.jpg">
+      <source src="hero.mp4" type="video/mp4" />
     </video>
-    -->
-
-    <!-- Platzhalter (nur bis das echte Video existiert) -->
-    <div class="hero__placeholder">
-      <div class="hero__island"></div>
-    </div>
 
     <div class="hero__scrim"></div>
 
